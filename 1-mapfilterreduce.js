@@ -89,7 +89,6 @@ function exercise8() {
 
 function exercise9() {
   // let's use the acc(umulator) as an accumulator, return the sum of all hours the courses take combined
-  // (you'll want to use parseInt())
   
 }
 
@@ -139,6 +138,7 @@ function exercise12() {
 
 function _exercise13(impactSize) {
   // return an array with the names of all the impacts that have a greater mass than 'impactSize' (passed as parameter)
+  // (you'll want to use parseInt())
 }
 
 function _exercise14(age) {
