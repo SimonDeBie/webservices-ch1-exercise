@@ -109,7 +109,7 @@ function exercise10() {
 
 ///////////////////////////////////////////////////////////
 //
-// STARTING THIS EXERC?ISE, USE impacts DATA NOT COURSES
+// STARTING THIS EXERCISE, USE impacts DATA NOT COURSES
 //
 ///////////////////////////////////////////////////////////
 function exercise11() {
