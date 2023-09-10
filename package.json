@@ -1,2 +1,12 @@
 {
+  "name": "webservices-ch1-exercise",
+  "version": "2.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha --bail"
+  },
+  "dependencies": {
+    "expect": "^29.6.4",
+    "mocha": "^10.2.0"
+  }
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1098,
+    "name": "webapps",
+    "teacher": "pieter",
+    "hours": 3
+  },
+  {
+    "id": 3872,
+    "name": "android",
+    "teacher": "jens",
+    "hours": 2
+  },
+  {
+    "id": 7291,
+    "name": "ios",
+    "teacher": "steven",
+    "hours": 2
+  },
+  {
+    "id": 981,
+    "name": "windows",
+    "teacher": "joeri",
+    "hours": 3
+  }
+]

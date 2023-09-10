@@ -1,21 +1,23 @@
-# webservices-ch1-exercise
+# Web Services - Oefeningen H1
 
-JavaScript oefeningen bij hoofdstuk 1.
+## Requirements
 
-Open de file 1-mapfilterreduce.js in je favoriete editor, je kan zelf checken of het antwoord correct is door op de command line
+- Node.js (>= v18): <https://nodejs.org>
+- VS Code: <https://code.visualstudio.com>
+  - Met de [Node.js Notebooks (REPL)](https://marketplace.visualstudio.com/items?itemName=donjayamanne.typescript-notebook) plugin
+- Andere dependencies worden automatisch geïnstalleerd in de notebooks
 
-    node 1-mapfilterreduce.js
+## Inhoud
 
-uit te voeren
+1. Map, filter, reduce: [src/map-filter-reduce.js](src/map-filter-reduce.js)
 
-Je zou dan iets als volgt moeten krijgen
+## Opzetten
 
-    ERROR in exercise1, output: '[]' expected '["pieter","jens","steven","joeri"]'
+1. Clone deze repository en open deze in VS Code.
+2. Installeer de dependencies met het commando `yarn install`.
+3. Ga door elk van de bestanden in de map `src` en los de oefeningen op.
+4. Controleer jouw oplossing m.b.v. het commando `yarn test`.
+   - Dit commando zal alle testen uitvoeren en stoppen bij de eerst gefaalde test.
+   - Je krijgt een output te zien die aangeeft wat er verwacht werd en wat jij hebt teruggegeven.
 
-
-Als je dan de eerste oefening juist oplost en hetzelfde commando uitvoert krijg je:
-
-    exercise1 OK!
-    ERROR in exercise2, output: '[]' expected '[{"id":1098,"name":"webapps"},{"id":3872,"name":"android"},{"id":7291,"name":"ios"},{"id":981,"name":"windows"}]'
-
-Enzoverder, veel plezier.
+Veel plezier!
