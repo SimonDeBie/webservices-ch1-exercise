@@ -4,8 +4,6 @@
 
 - Node.js (>= v18): <https://nodejs.org>
 - VS Code: <https://code.visualstudio.com>
-  - Met de [Node.js Notebooks (REPL)](https://marketplace.visualstudio.com/items?itemName=donjayamanne.typescript-notebook) plugin
-- Andere dependencies worden automatisch geïnstalleerd in de notebooks
 
 ## Inhoud
 
