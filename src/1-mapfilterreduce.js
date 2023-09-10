@@ -15,7 +15,7 @@ const courses = require('../datasets/courses');
 function oefening1() {
   const courseNames = [];
 
-  // courses.forEach();
+  courses.forEach((val) => courseNames.push(val.teacher));
 
   return courseNames;
 }
@@ -28,8 +28,10 @@ function oefening1() {
  */
 function oefening2() {
   let idNameArray = [];
-  
-  // courses.forEach();
+
+  courses.forEach((obj) => {
+    idNameArray.push({ id: obj.id, name: obj.name });
+  });
 
   return idNameArray;
 }
@@ -39,8 +41,7 @@ function oefening2() {
  * zouden gebruiken. Herschrijf oefening2 met behulp van `map`.
  */
 function oefening3() {
-  // return courses.map();
-  return [];
+  return courses.map((obj) => ({ id: obj.id, name: obj.name }));
 }
 
 /**
@@ -50,7 +51,15 @@ function oefening3() {
  * @returns {string[]}
  */
 function oefening4() {
-  return [];
+  const result = [];
+
+  courses.forEach((obj) => {
+    if (obj.hours === 3) {
+      result.push(obj);
+    }
+  });
+
+  return result;
 }
 
 /**
@@ -60,8 +69,7 @@ function oefening4() {
  * @returns {string[]}
  */
 function oefening5() {
-  // return courses.filter();
-  return [];
+  return courses.filter((obj) => obj.hours === 3);
 }
 
 /**
@@ -72,7 +80,8 @@ function oefening5() {
  * @returns {string[]}
  */
 function oefening6() {
-  return [];
+  return courses.filter((obj) => obj.hours === 3)
+    .map((obj) => obj.teacher);
 }
 
 /**
@@ -83,19 +92,33 @@ function oefening6() {
  * @returns {{ id: number; name: string; hours: number; teacher: string; }}
  */
 function oefening7() {
-  return {};
+  let course = undefined;
+  let maxId = -1;
+  courses.forEach((obj) => {
+    if (obj.id > maxId) {
+      course = obj;
+      maxId = course.id;
+    }
+  });
+  return course;
 }
 
 /**
  * Hier is wederom een ingebouwde functie voor: `reduce`. Herschrijf oefening7 met
  * behulp van `reduce`.
  *
- * 💡 Hint: Start met een fictieve course met id 0 (en verder niets).
+ * 💡 Hint: Start met een fictieve course met id -1 (en verder niets).
  *
  * @returns {{ id: number; name: string; hours: number; teacher: string; }}
  */
 function oefening8() {
-  return courses.reduce((acc, current) => {}, {});
+  return courses.reduce((acc, current) => {
+    if (acc.id > current.id) {
+      return acc;
+    } else {
+      return current;
+    }
+  });
 }
 
 /**
@@ -104,7 +127,10 @@ function oefening8() {
  * @returns {number}
  */
 function oefening9() {
-  return 0;
+  return courses.reduce((acc, current) => {
+    acc += current.hours;
+    return acc;
+  }, 0);
 }
 
 // 🦉 Gebruik vanaf nu enkel `map`, `filter`, `reduce` om de oefeningen op 🦉
@@ -121,30 +147,38 @@ function oefening9() {
  * @returns {string}
  */
 function oefening10() {
-  // return courses.reduce();
-  return "";
+  return courses.reduce((acc, current) => {
+    if (acc.id < current.id) {
+      return acc;
+    } else {
+      return current;
+    }
+  }).teacher;
 }
+
+const hasGeoLocation = (impact) => impact.geolocation;
+const hasNoGeoLocation = (impact) => !hasGeoLocation(impact);
 
 // 🦉 Gebruik de `impacts` dataset vanaf nu, niet meer de `courses` 🦉
 /**
  * Geef het aantal meteorietinslagen terug die een geolocatie hebben.
+ * Maak een helperfunctie voor de filter predicate.
  *
  * @returns {number}
  */
 function oefening11() {
-//  return impacts.filter();
- return 0;
+  return impacts.filter((val) => hasGeoLocation(val)).length;
 }
 
 /**
  * Geef een array terug met de namen van alle meteorietinslagen die geen
  * geolocatie hebben.
+ * Maak een helperfunctie voor de filter predicate, hergebruik de functie
+ * uit oefening11.
  */
 function oefening12() {
-  // return impacts.filter();
-  return [];
+  return impacts.filter(hasNoGeoLocation).map((obj) => obj.name);
 }
-
 
 // 🦉 In de theorie heb je geleerd wat currying is. Simpel gezegd, in plaats      🦉
 // 🦉 van een functie met meerdere argumenten te maken, maak je een functie met   🦉
@@ -160,6 +194,9 @@ function oefening12() {
 // 🦉                                                                             🦉
 // 🦉 Gebruik deze techniek in de volgende oefening(en)                           🦉
 
+const isImpactMassGreaterThan = (threshold) => (impact) =>
+  parseInt(impact.mass) > threshold;
+
 /**
  * Geef een array terug met de namen van alle meteorietinslagen die een grotere
  * massa hebben dan de meegegeven parameter.
@@ -171,19 +208,25 @@ function oefening12() {
  * @returns {string[]}
  */
 function oefening13(impactSize) {
-  return [];
+  return impacts
+    .filter(isImpactMassGreaterThan(impactSize))
+    .map((obj) => obj.name);
 }
+
+const isImpactYoungerThan = (year) => (impact) =>
+  new Date(impact.year).getFullYear() > year;
 
 /**
  * Geef een array terug met de namen van alle meteorietinslagen die na een bepaald
  * jaar gebeurd zijn.
+ * Maak opnieuw een helperfunctie voor de filter predicate.
  *
  * @param {number} age - De leeftijd van de meteorietinslagen die je wil teruggeven
  *
  * @returns {string[]}
  */
 function oefening14(age) {
-  return [];
+  return impacts.filter(isImpactYoungerThan(age)).map((obj) => obj.name);
 }
 
 /**
@@ -193,7 +236,13 @@ function oefening14(age) {
  * @returns {{ [key: number]: number }}
  */
 function oefening15() {
-  return {};
+  const toYearAndAmount = (obj, impact) => {
+    const year = new Date(impact.year).getFullYear();
+    if (!obj[year]) obj[year] = 0;
+    obj[year]++;
+    return obj;
+  };
+  return impacts.filter(isImpactYoungerThan(1945)).reduce(toYearAndAmount, {});
 }
 
 /**
@@ -204,7 +253,7 @@ function oefening15() {
  * @returns {boolean}
  */
 function oefening16() {
-  return undefined;
+  return impacts.some(isImpactYoungerThan(2012));
 }
 
 /**
@@ -215,8 +264,10 @@ function oefening16() {
  * @returns {boolean}
  */
 function oefening17() {
-  return undefined;
+  return impacts.every(hasGeoLocation);
 }
+
+const hasId = (id) => (impact) => parseInt(impact.id) === id;
 
 /**
  * Geef terug of er een meteorietinslag is met de meegegeven id (retourneer `true` of `false`).
@@ -227,8 +278,11 @@ function oefening17() {
  * @returns {boolean}
  */
 function oefening18(id) {
-  return undefined;
+  return impacts.includes(hasId(id));
 }
+
+const pickId = ({ id }) => parseInt(id);
+const sortSmallToLarge = (a, b) => a - b;
 
 /**
  * Geef een array terug met alle ids (als numbers) van de meteorietinslagen, gesorteerd van
@@ -237,8 +291,12 @@ function oefening18(id) {
  * @returns {number[]}
  */
 function oefening19() {
-  return [];
+  return impacts
+    .map(pickId)
+    .sort(sortSmallToLarge);
 }
+
+const pickMass = ({ mass }) => parseInt(mass);
 
 /**
  * Geef een array terug met de kleinste en grootste massa van de meteorietinslagen.
@@ -249,7 +307,15 @@ function oefening19() {
  * @returns {[number, number]}
  */
 function oefening20() {
-  return [];
+  const { min, max } = impacts
+    .map(pickMass)
+    .filter(Boolean)
+    .reduce(({ min, max }, mass) => ({
+      min: Math.min(min, mass),
+      max: Math.max(max, mass)
+    }), { min: Number.MAX_VALUE, max: Number.MIN_VALUE });
+
+  return [min, max];
 }
 
 //-------------------------------------------------------------------

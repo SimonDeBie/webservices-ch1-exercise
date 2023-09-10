@@ -1,10 +1,3 @@
-//-------------------------------------------------------------------
-//  🛑 NIETS WIJZIGEN 🛑
-//
-//  Deze twee functies heb je verderop in de oefeningen nodig.
-//
-//-------------------------------------------------------------------
-
 function addCallback(a, b, callback) {
   if (!Number.isInteger(a) || !Number.isInteger(b)) {
     callback(new Error('Arguments must be integers'));
@@ -45,7 +38,9 @@ function addAsync(a, b) {
  * @returns {void} Retourneer niets
  */
 function oefening21(getal1, getal2, callback) {
-  callback(0);
+  addCallback(getal1, getal2, (err, result) => {
+    callback(result * 2);
+  });
 }
 
 /**
@@ -60,7 +55,13 @@ function oefening21(getal1, getal2, callback) {
  * @returns {void} Retourneer niets
  */
 function oefening22(getal1, getal2, callback) {
-  callback(null, 0);
+  addCallback(getal1, getal2, (err, result) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, result * 2);
+    }
+  });
 }
 
 /**
@@ -74,7 +75,9 @@ function oefening22(getal1, getal2, callback) {
  * @returns {void} Retourneer niets
  */
 function oefening22(getal1, getal2, callback) {
-  callback(null, 0);
+  addAsync(getal1, getal2)
+    .then((result) => callback(null, result * 2))
+    .catch((err) => callback(err));
 }
 
 /**
@@ -89,7 +92,7 @@ function oefening22(getal1, getal2, callback) {
  * @returns {Promise<number>} Het resultaat van de optelling
  */
 async function oefening23(getal1, getal2) {
-  return null;
+  return await addAsync(getal1, getal2) * 2;
 }
 
 /**
@@ -102,7 +105,11 @@ async function oefening23(getal1, getal2) {
  * @returns {Promise<number | string>} Het resultaat of de error message
  */
 async function oefening24(getal1, getal2) {
-  return null;
+  try {
+    return await addAsync(getal1, getal2) * 2;
+  } catch (err) {
+    return err.message;
+  }
 }
 
 /**
@@ -114,7 +121,13 @@ async function oefening24(getal1, getal2) {
  * @param {Promise<number>} getal - Het getal
  */
 async function oefening25(getal) {
-  return null;
+  return new Promise((resolve, reject) => {
+    if (getal < 0) {
+      reject(new Error('Getal moet groter of gelijk zijn aan 0'));
+    } else {
+      resolve(getal);
+    }
+  });
 }
 
 module.exports = {
