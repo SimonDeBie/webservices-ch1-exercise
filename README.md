@@ -21,3 +21,7 @@
    - Je krijgt een output te zien die aangeeft wat er verwacht werd en wat jij hebt teruggegeven.
 
 Veel plezier!
+
+## Oplossingen
+
+De oplossingen voor de oefeningen zijn te vinden in de branch `solution`.
