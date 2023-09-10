@@ -128,6 +128,7 @@ function oefening10() {
 // 🦉 Gebruik de `impacts` dataset vanaf nu, niet meer de `courses` 🦉
 /**
  * Geef het aantal meteorietinslagen terug die een geolocatie hebben.
+ * Maak een helperfunctie voor de filter predicate.
  *
  * @returns {number}
  */
@@ -139,6 +140,8 @@ function oefening11() {
 /**
  * Geef een array terug met de namen van alle meteorietinslagen die geen
  * geolocatie hebben.
+ * Maak een helperfunctie voor de filter predicate, hergebruik de functie
+ * uit oefening11.
  */
 function oefening12() {
   // return impacts.filter();
@@ -177,6 +180,7 @@ function oefening13(impactSize) {
 /**
  * Geef een array terug met de namen van alle meteorietinslagen die na een bepaald
  * jaar gebeurd zijn.
+ * Maak opnieuw een helperfunctie voor de filter predicate.
  *
  * @param {number} age - De leeftijd van de meteorietinslagen die je wil teruggeven
  *
