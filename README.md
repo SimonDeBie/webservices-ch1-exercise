@@ -7,7 +7,8 @@
 
 ## Inhoud
 
-1. Map, filter, reduce: [src/map-filter-reduce.js](src/map-filter-reduce.js)
+1. Map, filter, reduce: [src/1-map-filter-reduce.js](src/1-mapfilterreduce.js)
+2. Async/await: [src/2-async-await.js](src/2-asyncawait.js)
 
 ## Opzetten
 
