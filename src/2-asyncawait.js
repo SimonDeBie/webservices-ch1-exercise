@@ -1,10 +1,9 @@
-function addCallback(a, b, callback) {
-  if (!Number.isInteger(a) || !Number.isInteger(b)) {
-    callback(new Error('Arguments must be integers'));
-  } else {
-    callback(null, a + b);
-  }
-}
+//-------------------------------------------------------------------
+//  🛑 NIETS WIJZIGEN 🛑
+//
+//  Deze twee functies heb je verderop in de oefeningen nodig.
+//
+//-------------------------------------------------------------------
 
 function addAsync(a, b) {
   return new Promise((resolve, reject) => {
@@ -23,58 +22,19 @@ function addAsync(a, b) {
 // 🦉 Voer `yarn test` uit om jouw resultaten te controleren                  🦉
 
 /**
- * Gebruik de functie `addCallback` om de twee gegeven getallen op te tellen.
- * Deze functie verwacht een callbackfunctie als laatste argument. Deze
- * functie wordt aangeroepen met een error als eerste argument en het resultaat
- * als tweede argument.
- * 
- * Bereken de som van de twee getallen en roep de meegegeven callbackfunctie
- * aan met het dubbel van het resultaat.
+ * Gebruik de functie `addAsync` om twee getallen op te tellen. Deze functie
+ * geeft een Promise terug. Gebruik `then` en `catch` om de meegegeven
+ * callbackfunctie aan te roepen. De callbackfunctie wordt aangeroepen met
+ * een error als eerste argument en het resultaat als tweede argument. Indien
+ * er geen error is, verwacht de callback null als eerste argument.
  *
  * @param {number} getal1 - Het eerste getal
  * @param {number} getal2 - Het tweede getal
- * @param {function} callback - De callbackfunctie
+ * @param {function} callback - De callbackfunctie (parameters: error, result)
  *
  * @returns {void} Retourneer niets
  */
 function oefening21(getal1, getal2, callback) {
-  addCallback(getal1, getal2, (err, result) => {
-    callback(result * 2);
-  });
-}
-
-/**
- * Doe hetzelfde als in oefening21, maar zorg ervoor dat de callbackfunctie
- * een error als eerste argument krijgt als er een error optreedt en het
- * resultaat als tweede argument.
- *
- * @param {number} getal1 - Het eerste getal
- * @param {number} getal2 - Het tweede getal
- * @param {function} callback - De callbackfunctie (parameters: error, result)
- *
- * @returns {void} Retourneer niets
- */
-function oefening22(getal1, getal2, callback) {
-  addCallback(getal1, getal2, (err, result) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, result * 2);
-    }
-  });
-}
-
-/**
- * Doe hetzelfde maar nu met `addAsync`. Deze functie geeft een Promise terug,
- * gebruik `then` en `catch` om de meegegeven callbackfunctie aan te roepen.
- *
- * @param {number} getal1 - Het eerste getal
- * @param {number} getal2 - Het tweede getal
- * @param {function} callback - De callbackfunctie (parameters: error, result)
- *
- * @returns {void} Retourneer niets
- */
-function oefening22(getal1, getal2, callback) {
   addAsync(getal1, getal2)
     .then((result) => callback(null, result * 2))
     .catch((err) => callback(err));
@@ -91,12 +51,12 @@ function oefening22(getal1, getal2, callback) {
  *
  * @returns {Promise<number>} Het resultaat van de optelling
  */
-async function oefening23(getal1, getal2) {
-  return await addAsync(getal1, getal2) * 2;
+async function oefening22(getal1, getal2) {
+  return await addAsync(getal1, getal2);
 }
 
 /**
- * Doe hetzelfde als in oefening24 maar zorg ervoor dat de message van een eventuele
+ * Doe hetzelfde als in oefening22 maar zorg ervoor dat de message van een eventuele
  * error wordt geretourneerd.
  *
  * @param {number} getal1 - Het eerste getal
@@ -104,9 +64,9 @@ async function oefening23(getal1, getal2) {
  * 
  * @returns {Promise<number | string>} Het resultaat of de error message
  */
-async function oefening24(getal1, getal2) {
+async function oefening23(getal1, getal2) {
   try {
-    return await addAsync(getal1, getal2) * 2;
+    return await addAsync(getal1, getal2);
   } catch (err) {
     return err.message;
   }
@@ -120,7 +80,7 @@ async function oefening24(getal1, getal2) {
  *
  * @param {Promise<number>} getal - Het getal
  */
-async function oefening25(getal) {
+async function oefening24(getal) {
   return new Promise((resolve, reject) => {
     if (getal < 0) {
       reject(new Error('Getal moet groter of gelijk zijn aan 0'));
@@ -135,5 +95,4 @@ module.exports = {
   oefening22,
   oefening23,
   oefening24,
-  oefening25,
 };

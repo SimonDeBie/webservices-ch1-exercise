@@ -4,21 +4,15 @@ const { expect } = require('expect');
 
 describe("Async/await", () => {
 
-  it('Oefening 21', () => {
-    asyncAwait.oefening21(1, 2, (result) => {
-      expect(result).toBe(6); // (1 + 2) * 2
-    });
-  });
-
   forEach([
-    [1, 2, 6],  // (1 + 2) * 2
-    [4, 3, 14], // (4 + 3) * 2
+    [1, 2, 3],
+    [4, 3, 7],
     [undefined, 2, 'error'],
     [1, undefined, 'error'],
     [undefined, undefined, 'error'],
   ])
-  .it('Oefening 22 (getal1: %s, getal2: %s, verwacht: %s)', (getal1, getal2, expected) => {
-    asyncAwait.oefening22(getal1, getal2, (err, result) => {
+  .it('Oefening 21 (getal1: %s, getal2: %s, verwacht: %s)', (getal1, getal2, expected) => {
+    asyncAwait.oefening21(getal1, getal2, (err, result) => {
       if (expected === 'error') {
         expect(err).not.toBeNull();
         expect(err.message).toBe('Arguments must be integers');
@@ -29,20 +23,24 @@ describe("Async/await", () => {
     });
   });
 
-  it('Oefening 23', async () => {
-    const result = await asyncAwait.oefening23(1, 2);
-    expect(result).toBe(6); // (1 + 2) * 2
+  forEach([
+    [1, 2, 3],
+    [4, 3, 7],
+  ])
+  .it('Oefening 22', async (getal1, getal2, expected) => {
+    const result = await asyncAwait.oefening22(getal1, getal2);
+    expect(result).toBe(expected);
   });
 
   forEach([
-    [1, 2, 6],
-    [4, 3, 14],
+    [1, 2, 3],
+    [4, 3, 7],
     [undefined, 2, 'Arguments must be integers'],
     [1, undefined, 'Arguments must be integers'],
     [undefined, undefined, 'Arguments must be integers'],
   ])
-  .it('Oefening 24 (getal1: %s, getal2: %s, verwacht: %s)', async (getal1, getal2, expected) => {
-    const result = await asyncAwait.oefening24(getal1, getal2);
+  .it('Oefening 23 (getal1: %s, getal2: %s, verwacht: %s)', async (getal1, getal2, expected) => {
+    const result = await asyncAwait.oefening23(getal1, getal2);
     expect(result).toBe(expected);
   });
 
@@ -52,8 +50,8 @@ describe("Async/await", () => {
     [10],
     [0],
   ])
-  .it('Oefening 25 (getal: %d)', async (getal) => {
-    const result = await asyncAwait.oefening25(getal);
+  .it('Oefening 24 (getal: %d)', async (getal) => {
+    const result = await asyncAwait.oefening24(getal);
     expect(result).toBe(getal);
   });
 
@@ -62,10 +60,10 @@ describe("Async/await", () => {
     [-4],
     [-10],
   ])
-  .it('Oefening 25 (getal: %d)', async (getal) => {
+  .it('Oefening 24 (getal: %d)', async (getal) => {
     expect.assertions(1);
     try {
-      await asyncAwait.oefening25(getal);
+      await asyncAwait.oefening24(getal);
     } catch (error) {
       expect(error.message).toBe('Getal moet groter of gelijk zijn aan 0');
     }
