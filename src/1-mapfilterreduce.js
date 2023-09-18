@@ -112,13 +112,10 @@ function oefening7() {
  * @returns {{ id: number; name: string; hours: number; teacher: string; }}
  */
 function oefening8() {
-  return courses.reduce((acc, current) => {
-    if (acc.id > current.id) {
-      return acc;
-    } else {
-      return current;
-    }
-  });
+  return courses.reduce(
+    (acc, current) => (acc.id > current.id) ? acc : current,
+    { id: -1 }
+  );
 }
 
 /**
@@ -127,10 +124,10 @@ function oefening8() {
  * @returns {number}
  */
 function oefening9() {
-  return courses.reduce((acc, current) => {
-    acc += current.hours;
-    return acc;
-  }, 0);
+  return courses.reduce(
+    (acc, current) => acc + current.hours,
+    0
+  );
 }
 
 // 🦉 Gebruik vanaf nu enkel `map`, `filter`, `reduce` om de oefeningen op 🦉
@@ -147,13 +144,9 @@ function oefening9() {
  * @returns {string}
  */
 function oefening10() {
-  return courses.reduce((acc, current) => {
-    if (acc.id < current.id) {
-      return acc;
-    } else {
-      return current;
-    }
-  }).teacher;
+  return courses.reduce(
+    (acc, current) => (acc.id < current.id) ? acc : current
+  ).teacher;
 }
 
 const hasGeoLocation = (impact) => impact.geolocation;
