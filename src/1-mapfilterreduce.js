@@ -44,8 +44,7 @@ function oefening3() {
 }
 
 /**
- * Gebruik `forEach` om een array terug te geven met enkel de namen van de courses
- * die 3 uur per week duren.
+ * Gebruik `forEach` om een array terug te geven met de courses die 3 uur per week duren.
  *
  * @returns {string[]}
  */
