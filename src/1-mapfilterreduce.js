@@ -65,7 +65,7 @@ function oefening5() {
 
 /**
  * Het is ook mogelijk om meerdere functies te combineren. Gebruik `filter` en `map`
- * om een array terug te geven met enkel de namen van de courses die 3 uur per week
+ * om een array terug te geven met enkel de docenten van de courses die 3 uur per week
  * duren.
  *
  * @returns {string[]}
